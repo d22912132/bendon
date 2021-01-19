@@ -13,12 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $name = 'tad';
-    $say  = '嗨！';
-    return view('welcome', compact('name', 'say'));
-});
-
+Route::get('/', 'ProductController@index')->name('index');
+Route::get('/product', 'ProductController@index')->name('product.index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
