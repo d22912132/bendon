@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Model;
+use Illuminate\Support\Str;
 
 use Illuminate\Database\Eloquent\Model;
 //由於我們有用到Storage物件，所以，記得在上面加上use Storage;
@@ -16,6 +17,10 @@ class Product extends Model
     // 需要和我們在 config/admin.php 裡面的 upload.disk 設定一致。
     public function getImageUrlAttribute()
     {
+        //用startsWith()來判斷自串開頭是不是指定的字串，如果是，就直接把該屬性值傳回即可，不再加以轉換。
+        if (Str::startsWith($this->attributes['image'], ['http://', 'https://'])) {
+            return $this->attributes['image'];
+        }
         return Storage::disk('public')->url($this->attributes['image']);
     }
 }
