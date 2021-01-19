@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $name = 'tad';
+    $say  = '嗨！';
+    return view('welcome', compact('name', 'say'));
 });
 
 Auth::routes();
