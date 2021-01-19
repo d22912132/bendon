@@ -106,4 +106,6 @@ class ProductController extends AdminController
             ->description('可於此頁面修改商品內容')
             ->body($this->form()->edit($id));
     }
+
+
 }

@@ -13,8 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::pattern('id', '[0-9]+');
+
 Route::get('/', 'ProductController@index')->name('index');
 Route::get('/product', 'ProductController@index')->name('product.index');
+Route::get('/product/{product}', 'ProductController@show')->name('product.show');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

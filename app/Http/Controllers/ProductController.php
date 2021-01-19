@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Product;
+use App\Exceptions\CustomException;
 
 class ProductController extends Controller
 {
@@ -46,9 +47,13 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        //
+        if (!$product->on_sale) {
+            throw new CustomException('商品未上架');
+        }
+        // 隱式路由模型綁定
+        return view('product.show', compact('product'));
     }
 
     /**
