@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cart extends Model
 {
+    
     // create 方法来保存新模型，此方法会返回模型实例。不过，在使用之前，
     // 你需要在模型上指定 fillable 或 guarded 属性，因为所有的 Eloquent 
     // 模型都默认不可进行批量赋值。

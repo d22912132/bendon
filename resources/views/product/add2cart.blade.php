@@ -5,21 +5,25 @@ $('.btn-add-to-cart').click(function(){
         amount: $('input[name=amount]').val(),
     })
     .then(function (){ //請求成功時執行
-        swal.fire('加入購物車成功', '', 'success');
+        swal.fire('加入購物車成功', '', 'success')
+        .then(function() {
+            location.href = '{{ route('cart.index') }}';
+        });
     }, function (error) { // 請求失敗時執行：
-        comsole.log('error.response.status =' + error.response.status);
-        if(error.response.status === 422){
-            var html '<div>';
-            _.each(error.response.data.errors, function(errors){
-                _.each(errors,function(error){
+        console.log('error.response.status = ' + error.response.status);
+        if (error.response.status === 422) {
+            var html = '<div>';
+            _.each(error.response.data.errors, function (errors) {
+                _.each(errors, function (error) {
                     html += error + '<br>';
                 })
             });
             html += '</div>';
             swal.fire({content: $(html)[0], icon: 'error'})
-        }else if(error.response.status === 500){
-            swal.fire('系統錯誤','','error');
+        } else if(error.response.status === 500) {
+            swal.fire('系統錯誤', '', 'error');
         }
+
         @guest
             swal.fire('請先登入','','error');
         @endguest
