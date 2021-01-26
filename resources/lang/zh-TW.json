@@ -25,5 +25,8 @@
     "On sale": "是否上架",
     "Price": "售價",
     "Created at": "建立時間",
-    "Updated at": "更新時間"
+    "Updated at": "更新時間",
+    "User id":"使用者編號",
+    "Total": "總計",
+    "Closed": "已處理"
 }
